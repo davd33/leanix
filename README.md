@@ -2,6 +2,23 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.0.
 
+## App description
+
+The application should be developed with Angular (https://angular.io/docs/ts/latest/quickstart.html).
+
+We recommend using the Angular-CLI (https://github.com/angular/angular-cli) because it allows to easily setup a working environment.
+
+The application itself shall consist of a Main-Detail view. The Main View (List View) shall show a list of the publicly available repositories on Github.
+
+As we are using GraphQL heavily in our company, you are required to use the GraphQL API: https://developer.github.com/v4/
+
+If one clicks on a link in the Main View, it shall open a detail view with the "Constributors" of the selected repository.
+
+The styling (CSS) of the application is not in focus, but of course, a nice-looking GUI is always appreciated.
+
+If you have some more ideas (... or time) to extend the application, please feel free to do so. As we are using ngrx (https://github.com/ngrx/store) for the state handling in our application, this would be an interesting addition.
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
