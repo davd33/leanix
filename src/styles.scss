@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+
+.github-list-repo {
+  display: flex;
+  justify-content: space-between;
+
+  .project-name {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:active {
+      color: blue;
+    }
+  }
+}
+
+.app-github-list-details {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+
+  .app-github-list-detail {
+    margin: 5px 10px;
+  }
+}
+
+.sign-in {
+  color: wheat;
+  display: flex;
+  flex-direction: row-reverse;
+  background: darkred;
+  padding: 15px 20px;
+
+  a {
+    color: wheat;
+  }
+}
+
+html, body {
+  margin: auto;
+}
