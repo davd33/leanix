@@ -13,6 +13,9 @@ export const getPublicReposQuery = gql`{
           name
           id
           url
+          owner {
+            login
+          }
         }
       }
     }

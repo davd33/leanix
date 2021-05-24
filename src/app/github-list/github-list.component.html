@@ -1,3 +1,6 @@
-<div class="app-github-list" *ngIf="githubList$ | async as githubList">
-  <div *ngFor="let r of githubList.repositories">{{r}}</div>
+<div class="app-github-list" *ngIf="githubRepos$ | async as githubList">
+  <div *ngFor="let r of githubList">
+    <div class="project-name" (click)="openDetailView(r.node.owner.login, r.node.name)">{{r.node.owner.login + '/' + r.node.name}}</div>
+    <div class="goto-project"><a [href]="r.node.url">[visit project]</a></div>
+  </div>
 </div>

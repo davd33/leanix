@@ -1,0 +1,5 @@
+<div class="app-github-list" *ngIf="repoDetails$ | async as repoDetails">
+  <div *ngFor="let r of repoDetails">
+    {{r.login}}
+  </div>
+</div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { AppShape, selectGithubRepositoriesState } from '../app.state';
 
 @Component({
     selector: 'app-github-list',
@@ -9,11 +11,17 @@ import { Observable } from 'rxjs';
 })
 export class GithubListComponent implements OnInit {
 
-    githubList$!: Observable<any>;
+  githubRepos$: Observable<any[]>;
 
-    constructor() { }
+  constructor(private store: Store<AppShape>,
+      private router: Router) {
+    this.githubRepos$ = this.store.select(selectGithubRepositoriesState);
+  }
 
-    ngOnInit(): void {
-    }
+  ngOnInit(): void {
+  }
 
+  openDetailView(githubRepoOwnerLogin: string, githubRepoName: string) {
+    this.router.navigate(['/github-detail', githubRepoOwnerLogin, githubRepoName]);
+  }
 }

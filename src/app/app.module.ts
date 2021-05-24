@@ -11,11 +11,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { GraphQLService } from './graphql.service';
 import { AppEffects } from './app.effects';
 import { reducers } from './app.state';
+import { GithubDetailComponent } from './github-list/github-detail/github-detail.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        GithubListComponent
+        GithubListComponent,
+        GithubDetailComponent
     ],
     imports: [
         BrowserModule,

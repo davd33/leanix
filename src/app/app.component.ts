@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { retrieveGithubReposAction } from './app.actions';
-import { AppShape, selectGithubRepositoriesState } from './app.state';
+import { AppShape } from './app.state';
 
 @Component({
     selector: 'app-root',
@@ -18,14 +18,10 @@ export class AppComponent {
     githubAuthUrl: string = `https://github.com/login/oauth/authorize?client_id=${this.clientId}&scope=user%20public_repo%20repo%20repo_deployment%20repo:status%20read:repo_hook%20read:org%20read:public_key%20read:gpg_key`;
     githubToken: Subject<string> = new Subject();
 
-    githubRepos$: Observable<any[]>;
-
     constructor(
       private http: HttpClient,
       private location: Location,
       private store: Store<AppShape>) {
-
-      this.githubRepos$ = this.store.select(selectGithubRepositoriesState);
     }
 
     ngOnInit() {

@@ -1,5 +1,5 @@
 import { ActionReducerMap, createSelector } from "@ngrx/store";
-import { GithubShape, githubReducer, selectGithubRepositories} from "./github-repos.reducers";
+import { GithubShape, githubReducer, selectGithubRepositories, selectGithubRepoDetails} from "./github-repos.reducers";
 
 export interface AppShape {
   githubState: GithubShape
@@ -18,4 +18,8 @@ export const selectGithubState = (state: AppShape) => state.githubState
 export const selectGithubRepositoriesState = createSelector(
   selectGithubState,
   selectGithubRepositories
+)
+export const selectGithubRepoDetailsState = createSelector(
+  selectGithubState,
+  selectGithubRepoDetails
 )
