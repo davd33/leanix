@@ -7,7 +7,9 @@ import { GithubListComponent } from './github-list/github-list.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
-import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { reducers, initialState } from './app.state';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
     declarations: [
@@ -19,10 +21,11 @@ import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
         AppRoutingModule,
         GraphQLModule,
         HttpClientModule,
-        StoreModule.forRoot([], {}),
-        //StoreDevtoolsModule.instrument({})
+        StoreModule.forRoot(reducers, { initialState }),
+        EffectsModule.forRoot([]),
+        StoreDevtoolsModule.instrument()
     ],
-    providers: [],
+    providers: [Location],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

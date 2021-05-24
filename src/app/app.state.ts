@@ -1,16 +1,16 @@
 import { ActionReducerMap } from "@ngrx/store";
-import * as githubListStore from "./github-list/state";
+import * as githubList from "./github-list/state";
 
 export interface AppState {
-    githubList: githubListStore.State;
+    githubList: githubList.State;
 }
 
 export const initialState: AppState = {
-    githubList: githubListStore.initialState
+    githubList: githubList.initialState
 }
 
-export const reducers: ActionReducerMap<AppState> = {
-    githubList: githubListStore.reducer
+export const reducers: ActionReducerMap<AppState, githubList.GithubListAction> = {
+    githubList: githubList.reducer
 }
 
-export const getMyGithubList = (s: AppState) => s.repositories;
+export const getMyGithubList = (s: AppState) => s.githubList;
