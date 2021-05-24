@@ -4,12 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GithubListComponent } from './github-list/github-list.component';
-import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { reducers, initialState } from './app.state';
 import { EffectsModule } from '@ngrx/effects';
+import { GraphQLService } from './graphql.service';
+import { AppEffects } from './app.effects';
+import { reducers } from './app.state';
 
 @NgModule({
     declarations: [
@@ -19,13 +20,12 @@ import { EffectsModule } from '@ngrx/effects';
     imports: [
         BrowserModule,
         AppRoutingModule,
-        GraphQLModule,
         HttpClientModule,
-        StoreModule.forRoot(reducers, { initialState }),
-        EffectsModule.forRoot([]),
+        StoreModule.forRoot(reducers, {  }),
+        EffectsModule.forRoot([AppEffects]),
         StoreDevtoolsModule.instrument()
     ],
-    providers: [Location],
+    providers: [Location, GraphQLService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

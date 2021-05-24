@@ -1,16 +1,21 @@
-import { ActionReducerMap } from "@ngrx/store";
-import * as githubList from "./github-list/state";
+import { ActionReducerMap, createSelector } from "@ngrx/store";
+import { GithubShape, githubReducer, selectGithubRepositories} from "./github-repos.reducers";
 
-export interface AppState {
-    githubList: githubList.State;
+export interface AppShape {
+  githubState: GithubShape
 }
 
-export const initialState: AppState = {
-    githubList: githubList.initialState
+export const reducers: ActionReducerMap<AppShape> = {
+  githubState: githubReducer
 }
 
-export const reducers: ActionReducerMap<AppState, githubList.GithubListAction> = {
-    githubList: githubList.reducer
-}
+/**
+ * Global Selectors
+ */
 
-export const getMyGithubList = (s: AppState) => s.githubList;
+
+export const selectGithubState = (state: AppShape) => state.githubState
+export const selectGithubRepositoriesState = createSelector(
+  selectGithubState,
+  selectGithubRepositories
+)
