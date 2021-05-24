@@ -12,7 +12,7 @@ import { Observable, Subject } from 'rxjs';
 export class AppComponent {
     title: string = 'leanix-test';
     clientId: string = environment.CLIENT_ID;
-    githubAuthUrl: string = `https://github.com/login/oauth/authorize?client_id=${this.clientId}&scope=user`;
+    githubAuthUrl: string = `https://github.com/login/oauth/authorize?client_id=${this.clientId}&scope=user%20public_repo%20repo%20repo_deployment%20repo:status%20read:repo_hook%20read:org%20read:public_key%20read:gpg_key`;
     githubToken: Subject<string> = new Subject();
 
     constructor(
@@ -41,10 +41,8 @@ export class AppComponent {
       this.githubToken.subscribe(token => {
         if (!token) return;
 
+        this.githubToken.unsubscribe();
         this.http.post('https://api.github.com/graphql', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          },
           query: `{
             search(query: "is:public", type: REPOSITORY, first: 50) {
               repositoryCount
@@ -57,16 +55,21 @@ export class AppComponent {
                   ... on Repository {
                     name
                     id
+                    url
                   }
                 }
               }
             }
           }`,
           variables: {}
+        }, {
+          headers: {
+            'Authorization': `bearer ${token}`
+          }
         }).subscribe(
           r => {
-            console.log(r);
-            this.githubToken.complete();
+            const res: any = r;
+            console.log(res.data.search.edges);
           });
       })
     }
